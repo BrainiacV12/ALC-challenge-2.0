@@ -2,6 +2,7 @@ package com.sunueric.travelmantics;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,14 +31,12 @@ public class ListActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_activity_menu, menu);
         MenuItem insertMenu = menu.findItem(R.id.insert_menu);
-        if (FirebaseUtil.isAdmin == true) {
+        if (FirebaseUtil.isAdmin) {
             insertMenu.setVisible(true);
        }
        else {
            insertMenu.setVisible(false);
        }
-
-
 
         return true;
     }
@@ -74,11 +73,14 @@ public class ListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         FirebaseUtil.openFbReference("traveldeals", this);
-        RecyclerView rvDeals = (RecyclerView) findViewById(R.id.rvDeals);
+        RecyclerView rvDeals = findViewById(R.id.rvDeals);
         final DealAdapter adapter = new DealAdapter();
         rvDeals.setAdapter(adapter);
         LinearLayoutManager dealsLayoutManager =
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(getApplicationContext(),
+                dealsLayoutManager.getOrientation());
+        rvDeals.addItemDecoration(mDividerItemDecoration);
         rvDeals.setLayoutManager(dealsLayoutManager);
         FirebaseUtil.attachListener();
     }

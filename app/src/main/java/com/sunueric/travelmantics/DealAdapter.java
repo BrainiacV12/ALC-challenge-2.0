@@ -92,16 +92,16 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         TextView tvDescription;
         TextView tvPrice;
 
-        public DealViewHolder(@NonNull View itemView) {
+        DealViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
-            tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
-            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
-            imageDeal = (ImageView) itemView.findViewById(R.id.imageDeal);//I changed image to imageDeal
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvPrice = itemView.findViewById(R.id.tvPrice);
+            imageDeal = itemView.findViewById(R.id.imageDeal);//I changed image to imageDeal
             itemView.setOnClickListener(this);
         }
 
-        public void bind(TravelDeal deal) {
+        void bind(TravelDeal deal) {
             tvTitle.setText(deal.getTitle());
             tvDescription.setText(deal.getDescription());
             tvPrice.setText(deal.getPrice());
@@ -119,7 +119,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
         }
 
         private void showImage(String url) {
-            if (url != null && url.isEmpty()==false) {
+            if (url != null && !url.isEmpty()) {
                 Picasso.get()
                         .load(url)
                         .resize(160, 160)
