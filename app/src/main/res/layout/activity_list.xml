@@ -10,10 +10,20 @@
         android:id="@+id/rvDeals"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+<<<<<<< HEAD
         android:layout_marginStart="4dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
+<<<<<<< HEAD
+=======
+=======
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+>>>>>>> 9f836521793d9e982605ef388327f7aa367ee5d9
+>>>>>>> d9fcc91bf9b79ef0d07818eb37c26ffb3c99a53d
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
