@@ -31,7 +31,8 @@ public class FirebaseUtil {
     public static ArrayList<TravelDeal> mDeals;
     private static final int RC_SIGN_IN = 123;
     private static ListActivity caller;
-    private FirebaseUtil(){};
+    private FirebaseUtil(){}
+
     public static boolean isAdmin;
 
 
@@ -84,7 +85,7 @@ public class FirebaseUtil {
                 .child(uid);
         ChildEventListener listener = new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
                 FirebaseUtil.isAdmin=true;
                 caller.showMenu();
             }
