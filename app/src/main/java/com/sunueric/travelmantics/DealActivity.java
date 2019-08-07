@@ -125,6 +125,7 @@ public class DealActivity extends AppCompatActivity {
             UploadTask uploadTask = ref.putFile(imageUri);
 
             uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+<<<<<<< HEAD
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                     if (!task.isSuccessful()) {
@@ -151,6 +152,34 @@ public class DealActivity extends AppCompatActivity {
                         Log.d("Image Error", Objects.requireNonNull(task.getException()).getMessage());
                     }
                 }
+=======
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw Objects.requireNonNull(task.getException());
+                    }
+
+                    // Continue with the task to get the download URL
+                    return ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+
+                        assert downloadUri != null;
+                        String pictureName = downloadUri.getPath();
+                        deal.setImageUrl(downloadUri.toString());
+                        deal.setImageName(pictureName);
+                        Log.d("Url: ", downloadUri.toString());
+                        Log.d("Name", pictureName);
+                        showImage(downloadUri.toString());
+                    } else {
+                        Log.d("Image Error", Objects.requireNonNull(task.getException()).getMessage());
+                    }
+                }
+>>>>>>> 9f836521793d9e982605ef388327f7aa367ee5d9
             });
         }
     }
